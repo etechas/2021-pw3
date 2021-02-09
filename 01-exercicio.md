@@ -1,76 +1,88 @@
-# EXERCÍCIO 2
+# EXERCÍCIO 1
 
 
-## FORMA DE PAGAMENTO
+## BANCO DE DADOS
 
-1 - Crie os pacotes abaixo dentro da pasta src:
-- br.com.etechoracio.efood.model
-- br.com.etechoracio.efood.repository
-- br.com.etechoracio.efood.controller
-- br.com.etechoracio.efood.enums
+1 - Pelo navegador, abra `https://www.elephantsql.com/` e entre com seu usuário e senha.
 
-2 - Crie a enumeração `TipoFormaPagamentoEnum` dentro do pacote _enums_ com os valores _CARTAO_CREDITO, CARTAO_DEBITO e VALE_REFEICAO_.
+2 - Clique no botão `+ Create New Instance`.
 
-3 - Crie a classe `FormaPagamento` dentro do pacote _model_ os atributos id, tipo, nome e dataFimVigencia.
+3 - Defina o nome `etec-restaurante`, o plano `Tyne Turtle (Free)` e a região `Northern Virginia`.
 
-4 - Faça o mapeamento com as anotações JPA (_javax.persistence_) como `@Entity`, `@Table`, `@Id`, `@Column`, etc.
+4 - Após a conclusão da criação, clique na instância `etec-restaurante` criada.
 
-5 - Anote a classe também com as anotações `@Getter` e `@Setter`.
+5 - Execute o script abaixo para criação das tabelas no item `BROWSER`.
 
-6 - Identar a classe com `Ctrl` + `Shift` + `F` e salvar (`Ctrl` + `S`).
+```properties
+CREATE TABLE TBL_TIPO_COZINHA (
+	ID_TIPO_COZINHA SERIAL PRIMARY KEY,
+	TX_NOME VARCHAR(100) NOT NULL,
+	DT_FIM_VIGENCIA TIMESTAMP
+);
 
-7 - Crie a interface `FormaPagamentoRepository` dentro do pacote _repository_ herdando (extends) de `JPARepository`.
+INSERT INTO TBL_TIPO_COZINHA (TX_NOME) VALUES ('Mineira');
+INSERT INTO TBL_TIPO_COZINHA (TX_NOME) VALUES ('Baiana');
+INSERT INTO TBL_TIPO_COZINHA (TX_NOME) VALUES ('Lanches');
+INSERT INTO TBL_TIPO_COZINHA (TX_NOME) VALUES ('Variada');
+INSERT INTO TBL_TIPO_COZINHA (TX_NOME) VALUES ('Hambúrger');
+INSERT INTO TBL_TIPO_COZINHA (TX_NOME) VALUES ('Árabe');
+INSERT INTO TBL_TIPO_COZINHA (TX_NOME) VALUES ('Italiana');
 
+CREATE TABLE TBL_FORMA_PAGAMENTO (
+	ID_FORMA_PAGAMENTO SERIAL PRIMARY KEY,
+	TX_NOME VARCHAR(100) NOT NULL,
+	TX_TIPO VARCHAR(20),
+	DT_FIM_VIGENCIA TIMESTAMP
+);
 
-### Resoluções
-
-> **Item 2: TipoFormaPagamentoEnum**
->
-
-```java
-public enum  TipoFormaPagamentoEnum {
-
-    CARTAO_CREDITO,
-    CARTAO_DEBITO,
-    VALE_REFEICAO;
-
-}
+INSERT INTO TBL_FORMA_PAGAMENTO (TX_NOME, TX_TIPO) VALUES ('Amex', 'CARTAO_CREDITO');
+INSERT INTO TBL_FORMA_PAGAMENTO (TX_NOME, TX_TIPO) VALUES ('Alelo', 'VALE_REFEICAO');
+INSERT INTO TBL_FORMA_PAGAMENTO (TX_NOME, TX_TIPO) VALUES ('Ticket Restaurante', 'VALE_REFEICAO');
+INSERT INTO TBL_FORMA_PAGAMENTO (TX_NOME, TX_TIPO) VALUES ('MasterCard Maestro', 'CARTAO_DEBITO');
+INSERT INTO TBL_FORMA_PAGAMENTO (TX_NOME, TX_TIPO) VALUES ('Visa Débito', 'CARTAO_DEBITO');
 ```
 
-> **Item 3 a 6: FormaPagamento**
->
+## CRIAÇÃO DO PROJETO SPRING
 
-```java
-@Getter
-@Setter
-@Entity
-@Table(name = "TBL_FORMA_PAGAMENTO")
-public class FormaPagamento {
+1 - Pelo navegador, abra `https://start.spring.io/`. 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_FORMA_PAGAMENTO")
-	private Integer id;
+2 - Defina as informações do projeto:
+- __Project:__ Maven Project
+- __Language:__ Java. 
+- __Spring Boot:__ versão padrão. 
+	
+3 - No trecho de _Project Metadata_, defina:
+- __Group:__ br.com.etechoracio
+- __Artifact:__ etec-food
+- __Name:__ etec-food
+- __Description:__ deixe em branco 
+- __Package Name:__ br.com.etechoracio.efood
+- __Packaging:__ Jar
+- __Java Version:__ 11
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "TX_TIPO")
-	private TipoFormaPagamentoEnum tipo;
+4 - Em _Dependencies_, adicione:
+- Web
+- Lombok
+- JPA
+- PostgreSQL Driver
 
-	@Column(name = "TX_NOME")
-	private String nome;
+5 - Clique em `Generate Project`.
 
-	@Column(name = "DT_FIM_VIGENCIA")
-	private LocalDateTime dataFimVigencia;
+6 - Extraia o `etec-food.zip` para uma pasta de sua preferência.
 
-}
+8 - Faça a importação do projeto no Eclipse através do menu _File -> Import -> Existing Maven Projects_.
+
+7 - No arquivo `src/main/resources/application.properties`, defina as configurações do banco de dados e da JPA.
+
+```properties
+#DATASOURCE CONFIGS
+spring.datasource.url=jdbc:postgresql://SERVER_DO_SEU_ELEPHANT:5432/USER_DO_SEU_ELEPHANT
+spring.datasource.username=USER_DO_SEU_ELEPHANT
+spring.datasource.password=PASSWORD_DO_SEU_ELEPHANT
+
+#JPA CONFIGS
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.show-sql=true
 ```
 
-
-> **Item 7: FormaPagamentoRepository**
->
-
-```java
-public interface FormaPagamentoRepository extends JpaRepository<FormaPagamento, Integer> {
-
-}
-```
+8 - Salve o arquivo.
