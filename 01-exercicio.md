@@ -47,18 +47,18 @@ INSERT INTO TBL_FORMA_PAGAMENTO (TX_NOME, TX_TIPO) VALUES ('Visa Débito', 'CART
 1 - Pelo navegador, abra `https://start.spring.io/`. 
 
 2 - Defina as informações do projeto:
-	__Project:__ Maven Project
-	__Language:__ Java. 
-	__Spring Boot:__ versão padrão. 
+- __Project:__ Maven Project
+- __Language:__ Java. 
+- __Spring Boot:__ versão padrão. 
 	
 3 - No trecho de _Project Metadata_, defina:
-    __Group:__ br.com.etechoracio
-    __Artifact:__ etec-food
-	__Name:__ etec-food
-	__Description:__ deixe em branco 
-	__Package Name:__ br.com.etechoracio.efood
-	__Packaging:__ Jar
-	__Java Version:__ 11
+- __Group:__ br.com.etechoracio
+- __Artifact:__ etec-food
+- __Name:__ etec-food
+- __Description:__ deixe em branco 
+- __Package Name:__ br.com.etechoracio.efood
+- __Packaging:__ Jar
+- __Java Version:__ 11
 
 4 - Em _Dependencies_, adicione:
 - Web
