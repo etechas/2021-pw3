@@ -5,50 +5,41 @@
 
 1 - Abra o projeto **etec-food**.
 
-2 - Crie a classe `FormaPagamento` dentro do pacote _model_ os atributos id, tipo, nome e dataFimVigencia.
+2 - Crie a classe `TipoCozinha` dentro do pacote _model_ com os atributos id, nome e dataFimVigencia.
 
-4 - Faça o mapeamento com as anotações JPA (_javax.persistence_) como `@Entity`, `@Table`, `@Id`, `@Column`, etc.
+3 - Faça o mapeamento com as anotações JPA (_javax.persistence_) como `@Entity`, `@Table`, `@Id`, `@Column`, etc, conforme informações da tabela abaixo:
+```properties
+CREATE TABLE TBL_TIPO_COZINHA (
+	ID_TIPO_COZINHA SERIAL PRIMARY KEY,
+	TX_NOME VARCHAR(100) NOT NULL,
+	DT_FIM_VIGENCIA TIMESTAMP
+);
+```
 
-5 - Anote a classe também com as anotações `@Getter` e `@Setter`.
+4 - Anote a classe também com as anotações `@Getter` e `@Setter`.
 
-6 - Identar a classe com `Ctrl` + `Shift` + `F` e salvar (`Ctrl` + `S`).
+5 - Identar a classe com `Ctrl` + `Shift` + `F` e salvar (`Ctrl` + `S`).
 
-7 - Crie a interface `FormaPagamentoRepository` dentro do pacote _repository_ herdando (extends) de `JPARepository`.
+6 - Crie a interface `TipoCozinhaRepository` dentro do pacote _repository_ herdando (extends) de `JPARepository`.
 
+7 - Executar a classe **EtecFoodApplication** para validar o mapeamento.
 
 ### Resoluções
 
-> **Item 2: TipoFormaPagamentoEnum**
->
-
-```java
-public enum  TipoFormaPagamentoEnum {
-
-    CARTAO_CREDITO,
-    CARTAO_DEBITO,
-    VALE_REFEICAO;
-
-}
-```
-
-> **Item 3 a 6: FormaPagamento**
+> **Item 2 a 5: TipoCozinha**
 >
 
 ```java
 @Getter
 @Setter
 @Entity
-@Table(name = "TBL_FORMA_PAGAMENTO")
-public class FormaPagamento {
+@Table(name = "TBL_TIPO_COZINHA")
+public class TipoCozinha {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_FORMA_PAGAMENTO")
+	@Column(name = "ID_TIPO_COZINHA")
 	private Integer id;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "TX_TIPO")
-	private TipoFormaPagamentoEnum tipo;
 
 	@Column(name = "TX_NOME")
 	private String nome;
@@ -60,11 +51,11 @@ public class FormaPagamento {
 ```
 
 
-> **Item 7: FormaPagamentoRepository**
+> **Item 6: TipoCozinhaRepository**
 >
 
 ```java
-public interface FormaPagamentoRepository extends JpaRepository<FormaPagamento, Integer> {
+public interface TipoCozinhaRepository extends JpaRepository<TipoCozinha, Integer> {
 
 }
 ```
