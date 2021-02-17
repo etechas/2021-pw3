@@ -48,7 +48,7 @@ public List<FormaPagamento> listar() {
 ```java
 @GetMapping("/{id}")
 public FormaPagamento buscarPorId(@PathVariable Integer id) {
-	Optional<FormaPagamento> resultado = repository.findById(id);
+	Optional<FormaPagamento> resultado = formaPagamentoRepository.findById(id);
 	return resultado.orElse(null);
 }	
 ```
