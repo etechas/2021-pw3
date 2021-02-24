@@ -26,6 +26,6 @@ public FormaPagamento atualizar(@PathVariable("id") Integer id,
     if (existe.isEmpty()) {
         return null;
     }
-	return formaPagamentoRepository.save(formaPagamento);
+    return formaPagamentoRepository.save(formaPagamento);
 }
 ```
