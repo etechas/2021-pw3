@@ -20,7 +20,6 @@
 ```java
 @PostMapping
 public FormaPagamento adicionar(@RequestBody FormaPagamento formaPagamento) {
-    FormaPagamento inserido = formaPagamentoRepository.save(formaPagamento);
-    return inserido;
+    return formaPagamentoRepository.save(formaPagamento);
 }
 ```
