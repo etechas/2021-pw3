@@ -12,6 +12,8 @@ Agora, você ajudará na automatização da cobrança construindo uma aplicaçã
 - `Project:` Maven Project
 - `Language:` Java
 - `Spring Boot:` versão padrão
+
+
 **Project Metadata**
 - `Group:` br.com.`<seu-nome>`
 - `Artifact:` aval-estacionamento
@@ -20,6 +22,8 @@ Agora, você ajudará na automatização da cobrança construindo uma aplicaçã
 - `Package Name:` br.com.`<seu-nome>`.estacionamento
 - `Packaging:` Jar
 - `Java Version:` 8 ou 11 (depende da instalação)
+
+
 **Dependencies:**
 - Web
 - Lombok
